@@ -39,6 +39,10 @@ jobs:
       - name: Pages configureren
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Zet GitHub Pages (build-type "GitHub Actions") automatisch aan
+          # zodat de eerste run niet faalt op een nog niet ingeschakelde Pages-site.
+          enablement: true
       - name: Bouwen met Hugo
         env:
           HUGO_ENVIRONMENT: production
