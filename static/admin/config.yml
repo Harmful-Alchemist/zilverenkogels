@@ -1,0 +1,94 @@
+# Sveltia CMS — configuratie voor De Zilveren Kogels
+# Inloggen gebeurt met een GitHub Personal Access Token (geen OAuth-server nodig).
+# Zie HANDLEIDING.md voor uitleg.
+
+backend:
+  name: github
+  repo: Harmful-Alchemist/zilverenkogels
+  branch: main
+
+# Taal van de beheerinterface
+locale: nl
+
+# Waar losse uploads (bv. losse afbeeldingen) terechtkomen
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+# Bewust beperkt tot drie soorten inhoud + contactgegevens,
+# zodat de rest van de site niet per ongeluk gewijzigd kan worden.
+collections:
+  # 1. Agenda — losse activiteiten
+  - name: agenda
+    label: "Agenda"
+    label_singular: "Activiteit"
+    folder: "content/agenda"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{fields.date | date('DD-MM-YYYY')}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum en tijd", name: "date", widget: "datetime", date_format: "DD-MM-YYYY", time_format: "HH:mm", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Locatie", name: "location", widget: "string", required: false }
+      - { label: "Beschrijving", name: "body", widget: "markdown" }
+
+  # 2. Nieuws — berichten (elk bericht in een eigen map met eventueel een foto)
+  - name: nieuws
+    label: "Nieuws"
+    label_singular: "Nieuwsbericht"
+    folder: "content/nieuws"
+    create: true
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    slug: "{{slug}}"
+    summary: "{{fields.date | date('DD-MM-YYYY')}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum", name: "date", widget: "datetime", date_format: "DD-MM-YYYY", time_format: false, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Foto (optioneel)", name: "image", widget: "image", required: false, choose_url: false }
+      - { label: "Tekst", name: "body", widget: "markdown" }
+
+  # 3. Fotoalbums — elk album een eigen map met foto's
+  - name: fotos
+    label: "Fotoalbums"
+    label_singular: "Fotoalbum"
+    folder: "content/fotos"
+    create: true
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    slug: "{{slug}}"
+    summary: "{{fields.date | date('DD-MM-YYYY')}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum", name: "date", widget: "datetime", date_format: "DD-MM-YYYY", time_format: false, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Omslagfoto", name: "cover", widget: "image", required: false, choose_url: false }
+      - label: "Foto's"
+        name: "fotos"
+        widget: "list"
+        required: false
+        summary: "{{fields.afbeelding}}"
+        field: { label: "Afbeelding", name: "afbeelding", widget: "image", choose_url: false }
+      - { label: "Toelichting (optioneel)", name: "body", widget: "markdown", required: false }
+
+  # 4. Contactgegevens — één bestand (geen nieuwe items, alleen bewerken)
+  - name: instellingen
+    label: "Instellingen"
+    files:
+      - name: contact
+        label: "Contactgegevens"
+        file: "data/contact.yaml"
+        fields:
+          - { label: "Naam vereniging", name: "clubnaam", widget: "string" }
+          - { label: "Locatie", name: "locatie", widget: "string", required: false }
+          - { label: "Adres", name: "adres", widget: "text", required: false }
+          - { label: "Speeltijden", name: "speeltijden", widget: "string", required: false }
+          - { label: "Contactpersoon", name: "contactpersoon", widget: "string", required: false }
+          - { label: "Telefoon", name: "telefoon", widget: "string", required: false }
+          - { label: "E-mail", name: "email", widget: "string", required: false }
+          - { label: "KvK-nummer", name: "kvk", widget: "string", required: false }
+          - { label: "IBAN", name: "bank", widget: "string", required: false }
+          - { label: "Kaart (insluitcode, optioneel)", name: "kaart", widget: "text", required: false }

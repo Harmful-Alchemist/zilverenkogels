@@ -1,0 +1,11 @@
+# Hugo build-output en cache
+/public/
+/resources/
+.hugo_build.lock
+
+# Bron-map met voorbeeldfoto's (verwerkt naar content/)
+/voorbeeld_fotos/
+
+# OS / editor
+.DS_Store
+Thumbs.db

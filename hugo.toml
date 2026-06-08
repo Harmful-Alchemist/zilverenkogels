@@ -1,0 +1,47 @@
+baseURL = "https://zilverenkogels.nl/"
+locale = "nl-nl"
+defaultContentLanguage = "nl"
+title = "De Zilveren Kogels"
+enableRobotsTXT = true
+
+# Agenda-items zijn toekomstig gedateerd; zonder deze instelling bouwt Hugo ze niet
+# en zouden komende activiteiten niet zichtbaar zijn.
+buildFuture = true
+
+[pagination]
+  pagerSize = 12
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[taxonomies]
+  # geen tags/categorieën nodig voor deze site
+  _merge = "none"
+
+[[menu.main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "Agenda"
+  pageRef = "/agenda"
+  weight = 20
+
+[[menu.main]]
+  name = "Nieuws"
+  pageRef = "/nieuws"
+  weight = 30
+
+[[menu.main]]
+  name = "Foto's"
+  pageRef = "/fotos"
+  weight = 40
+
+[[menu.main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 50
+
+[params]
+  beschrijving = "Jeu-de-boules-vereniging De Zilveren Kogels"

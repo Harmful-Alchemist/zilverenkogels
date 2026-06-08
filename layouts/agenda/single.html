@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <article class="single agenda-single">
+    <p class="terug"><a href="{{ "/agenda" | relURL }}">← Terug naar de agenda</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="single-meta">
+      <time datetime="{{ .Date.Format "2006-01-02T15:04" }}">{{ partial "datum.html" .Date }}{{ $tijd := .Date.Format "15:04" }}{{ if ne $tijd "00:00" }} · {{ $tijd }} uur{{ end }}</time>
+      {{ with .Params.location }}<span class="agenda-locatie">· 📍 {{ . }}</span>{{ end }}
+    </p>
+    <div class="prose">{{ .Content }}</div>
+  </article>
+{{ end }}

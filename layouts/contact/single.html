@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{ $c := hugo.Data.contact }}
+  <article class="single contact-single">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+    <div class="contact-grid">
+      <div class="contact-gegevens">
+        <h2>Gegevens</h2>
+        <dl>
+          {{ with $c.clubnaam }}<dt>Vereniging</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with $c.locatie }}<dt>Locatie</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with $c.adres }}<dt>Adres</dt><dd>{{ . | safeHTML }}</dd>{{ end }}
+          {{ with $c.speeltijden }}<dt>Speeltijden</dt><dd>{{ . | safeHTML }}</dd>{{ end }}
+          {{ with $c.contactpersoon }}<dt>Contactpersoon</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with $c.telefoon }}<dt>Telefoon</dt><dd><a href="tel:{{ . | replaceRE `[^0-9+]` `` }}">{{ . }}</a></dd>{{ end }}
+          {{ with $c.email }}<dt>E-mail</dt><dd><a href="mailto:{{ . }}">{{ . }}</a></dd>{{ end }}
+          {{ with $c.kvk }}<dt>KvK</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with $c.bank }}<dt>IBAN</dt><dd>{{ . }}</dd>{{ end }}
+        </dl>
+      </div>
+      {{ with $c.kaart }}
+        <div class="contact-kaart">{{ . | safeHTML }}</div>
+      {{ end }}
+    </div>
+  </article>
+{{ end }}

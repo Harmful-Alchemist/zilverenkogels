@@ -1,0 +1,36 @@
+{{ define "main" }}
+  <article class="single album-single">
+    <p class="terug"><a href="{{ "/fotos" | relURL }}">← Terug naar de albums</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="single-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "datum.html" .Date }}</time></p>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+    {{ $images := .Resources.ByType "image" }}
+    {{ if $images }}
+      <div class="foto-galerij" data-lightbox>
+        {{ range $images }}
+          {{ $thumb := .Fill "500x500 smart" }}
+          {{ $full := . }}
+          {{ if gt .Width 1600 }}{{ $full = .Resize "1600x" }}{{ end }}
+          <a class="foto" href="{{ $full.RelPermalink }}">
+            <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" width="500" height="500">
+          </a>
+        {{ end }}
+      </div>
+
+      <div class="lightbox" id="lightbox" hidden>
+        <button class="lightbox-sluit" aria-label="Sluiten">&times;</button>
+        <button class="lightbox-vorige" aria-label="Vorige">&#8249;</button>
+        <img class="lightbox-img" src="" alt="">
+        <button class="lightbox-volgende" aria-label="Volgende">&#8250;</button>
+      </div>
+
+      {{ with resources.Get "js/lightbox.js" }}
+        {{ $js := . | minify | fingerprint }}
+        <script src="{{ $js.RelPermalink }}" defer></script>
+      {{ end }}
+    {{ else }}
+      <p class="leeg">Dit album bevat nog geen foto's.</p>
+    {{ end }}
+  </article>
+{{ end }}

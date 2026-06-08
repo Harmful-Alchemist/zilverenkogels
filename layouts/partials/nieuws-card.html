@@ -1,0 +1,22 @@
+{{- /* Eén nieuwsbericht als kaart. Aanroep: {{ partial "nieuws-card.html" . }} met een Page. */ -}}
+<article class="nieuws-card">
+  {{ $img := "" }}
+  {{ with .Params.image }}{{ $img = . }}{{ end }}
+  {{ if $img }}
+    <a class="nieuws-thumb" href="{{ .RelPermalink }}">
+      {{ $res := $.Resources.Get $img }}
+      {{ if $res }}
+        {{ $t := $res.Fill "600x360 smart" }}
+        <img src="{{ $t.RelPermalink }}" alt="{{ .Title }}" loading="lazy" width="600" height="360">
+      {{ else }}
+        <img src="{{ $img | relURL }}" alt="{{ .Title }}" loading="lazy">
+      {{ end }}
+    </a>
+  {{ end }}
+  <div class="nieuws-card-body">
+    <p class="nieuws-datum"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "datum.html" .Date }}</time></p>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p>{{ .Summary | plainify | truncate 160 }}</p>
+    <a class="lees-meer" href="{{ .RelPermalink }}">Lees meer →</a>
+  </div>
+</article>

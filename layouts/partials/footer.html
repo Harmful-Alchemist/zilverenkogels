@@ -1,0 +1,23 @@
+{{ $c := hugo.Data.contact }}
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <h3>{{ with $c.clubnaam }}{{ . }}{{ else }}De Zilveren Kogels{{ end }}</h3>
+      {{ with $c.locatie }}<p>{{ . }}</p>{{ end }}
+      {{ with $c.adres }}<p>{{ . | safeHTML }}</p>{{ end }}
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      {{ with $c.contactpersoon }}<p>{{ . }}</p>{{ end }}
+      {{ with $c.telefoon }}<p>Tel: <a href="tel:{{ . | replaceRE `[^0-9+]` `` }}">{{ . }}</a></p>{{ end }}
+      {{ with $c.email }}<p>E-mail: <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+    </div>
+    <div class="footer-col">
+      <h3>Speeltijden</h3>
+      {{ with $c.speeltijden }}<p>{{ . | safeHTML }}</p>{{ end }}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {{ now.Year }} {{ with $c.clubnaam }}{{ . }}{{ else }}De Zilveren Kogels{{ end }} · <a href="{{ "/contact" | relURL }}">Contact</a></p>
+  </div>
+</footer>

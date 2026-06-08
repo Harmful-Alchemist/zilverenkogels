@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $alle := where site.RegularPages "Section" "agenda" }}
+  {{ $komend := sort (where $alle "Date" "ge" now) "Date" "asc" }}
+  {{ $verleden := sort (where $alle "Date" "lt" now) "Date" "desc" }}
+
+  <section class="komende">
+    <h2>Komende activiteiten</h2>
+    {{ with $komend }}
+      <div class="agenda-lijst">
+        {{ range . }}{{ partial "agenda-item.html" . }}{{ end }}
+      </div>
+    {{ else }}
+      <p class="leeg">Er staan op dit moment geen activiteiten gepland.</p>
+    {{ end }}
+  </section>
+
+  {{ with $verleden }}
+    <section class="verleden">
+      <details>
+        <summary>Eerdere activiteiten ({{ len . }})</summary>
+        <div class="agenda-lijst">
+          {{ range . }}{{ partial "agenda-item.html" . }}{{ end }}
+        </div>
+      </details>
+    </section>
+  {{ end }}
+{{ end }}

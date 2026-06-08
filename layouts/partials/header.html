@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ "/" | relURL }}">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">De Zilveren Kogels</span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="site-nav" aria-label="Hoofdmenu">
+      <ul>
+        {{ range .Site.Menus.main }}
+          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <li><a href="{{ .URL }}"{{ if $active }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

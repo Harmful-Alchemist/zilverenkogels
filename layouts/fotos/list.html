@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $albums := .Pages }}
+  {{ if $albums }}
+    <div class="album-grid">
+      {{ range $albums }}
+        {{ $cover := "" }}
+        {{ with .Params.cover }}{{ $cover = $.Resources.Get . }}{{ end }}
+        {{ if not $cover }}{{ $cover = (.Resources.ByType "image" | first 1) }}{{ if $cover }}{{ $cover = index $cover 0 }}{{ end }}{{ end }}
+        <a class="album-card" href="{{ .RelPermalink }}">
+          {{ if $cover }}
+            {{ $t := $cover.Fill "600x450 smart" }}
+            <img src="{{ $t.RelPermalink }}" alt="{{ .Title }}" loading="lazy" width="600" height="450">
+          {{ end }}
+          <span class="album-titel">
+            {{ .Title }}
+            <small>{{ partial "datum.html" .Date }} · {{ len (.Resources.ByType "image") }} foto's</small>
+          </span>
+        </a>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="leeg">Er zijn nog geen fotoalbums.</p>
+  {{ end }}
+{{ end }}

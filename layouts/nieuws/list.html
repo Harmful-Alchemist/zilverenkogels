@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ $nieuws := where site.RegularPages "Section" "nieuws" }}
+  {{ if $nieuws }}
+    <div class="nieuws-grid">
+      {{ range $nieuws }}{{ partial "nieuws-card.html" . }}{{ end }}
+    </div>
+  {{ else }}
+    <p class="leeg">Er is nog geen nieuws geplaatst.</p>
+  {{ end }}
+{{ end }}

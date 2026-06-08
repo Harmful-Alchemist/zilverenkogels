@@ -1,0 +1,71 @@
+{{ define "main" }}
+  {{/* Hero */}}
+  <section class="hero">
+    {{ with resources.Get "images/hero.jpg" }}
+      {{ $h := .Fill "1600x720 smart" }}
+      <img class="hero-img" src="{{ $h.RelPermalink }}" alt="Leden van De Zilveren Kogels in actie op de baan" width="1600" height="720">
+    {{ end }}
+    <div class="hero-overlay">
+      <div class="container">
+        <h1>{{ .Site.Title }}</h1>
+        <p class="hero-tagline">{{ with .Site.Params.beschrijving }}{{ . }}{{ end }}</p>
+        <a class="knop" href="{{ "/agenda" | relURL }}">Bekijk de agenda</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    {{/* Welkomsttekst uit content/_index.md */}}
+    {{ with .Content }}
+      <section class="intro prose">{{ . }}</section>
+    {{ end }}
+
+    {{ $agenda := where (where site.RegularPages "Section" "agenda") "Date" "ge" now }}
+    {{ $agenda = sort $agenda "Date" "asc" }}
+
+    {{/* Volgende speelavond / activiteit */}}
+    {{ with index $agenda 0 }}
+      <section class="volgende">
+        <h2>Volgende activiteit</h2>
+        <div class="volgende-card">
+          <div class="agenda-datum groot" aria-hidden="true">
+            <span class="dag">{{ .Date.Format "2" }}</span>
+            <span class="maand">{{ partial "maand-kort.html" .Date }}</span>
+          </div>
+          <div>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p class="agenda-meta">
+              <time datetime="{{ .Date.Format "2006-01-02T15:04" }}">{{ partial "datum.html" .Date }}{{ $tijd := .Date.Format "15:04" }}{{ if ne $tijd "00:00" }} · {{ $tijd }} uur{{ end }}</time>
+              {{ with .Params.location }}<span class="agenda-locatie">· {{ . }}</span>{{ end }}
+            </p>
+            {{ with .Summary }}<div class="prose">{{ . }}</div>{{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+
+    {{/* Komende activiteiten (de volgende vijf na de eerste) */}}
+    {{ $komend := after 1 $agenda | first 5 }}
+    {{ with $komend }}
+      <section class="komende">
+        <h2>Komende activiteiten</h2>
+        <div class="agenda-lijst">
+          {{ range . }}{{ partial "agenda-item.html" . }}{{ end }}
+        </div>
+        <p><a class="lees-meer" href="{{ "/agenda" | relURL }}">Hele agenda →</a></p>
+      </section>
+    {{ end }}
+
+    {{/* Laatste nieuws */}}
+    {{ $nieuws := where site.RegularPages "Section" "nieuws" | first 3 }}
+    {{ with $nieuws }}
+      <section class="laatste-nieuws">
+        <h2>Laatste nieuws</h2>
+        <div class="nieuws-grid">
+          {{ range . }}{{ partial "nieuws-card.html" . }}{{ end }}
+        </div>
+        <p><a class="lees-meer" href="{{ "/nieuws" | relURL }}">Al het nieuws →</a></p>
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

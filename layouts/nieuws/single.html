@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <article class="single nieuws-single">
+    <p class="terug"><a href="{{ "/nieuws" | relURL }}">← Terug naar nieuws</a></p>
+    <h1>{{ .Title }}</h1>
+    <p class="single-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "datum.html" .Date }}</time></p>
+    {{ with .Params.image }}
+      {{ $res := $.Resources.Get . }}
+      {{ if $res }}
+        {{ $t := $res.Fill "1200x675 smart" }}
+        <img class="single-foto" src="{{ $t.RelPermalink }}" alt="{{ $.Title }}" width="1200" height="675">
+      {{ else }}
+        <img class="single-foto" src="{{ . | relURL }}" alt="{{ $.Title }}">
+      {{ end }}
+    {{ end }}
+    <div class="prose">{{ .Content }}</div>
+  </article>
+{{ end }}
