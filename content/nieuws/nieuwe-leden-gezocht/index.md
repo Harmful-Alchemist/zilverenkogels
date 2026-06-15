@@ -1,7 +1,7 @@
 ---
-title: "Nieuwe leden van harte welkom"
-date: 2026-06-01T09:00:00+02:00
-image: "foto.jpeg"
+title: Nieuwe leden van harte welkom
+date: 2026-06-01T00:00:00+02:00
+image: foto.jpeg
 ---
 
 Het nieuwe seizoen is begonnen en onze banen liggen er prachtig bij! We merken dat steeds
