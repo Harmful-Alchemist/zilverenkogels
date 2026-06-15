@@ -9,7 +9,6 @@
     <div class="footer-col">
       <h3>Contact</h3>
       {{ with $c.contactpersoon }}<p>{{ . }}</p>{{ end }}
-      {{ with $c.telefoon }}<p>Tel: <a href="tel:{{ . | replaceRE `[^0-9+]` `` }}">{{ . }}</a></p>{{ end }}
       {{ with $c.email }}<p>E-mail: <a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
     </div>
     <div class="footer-col">

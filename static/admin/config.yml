@@ -125,8 +125,5 @@ collections:
           - { label: "Adres", name: "adres", widget: "text", required: false }
           - { label: "Speeltijden", name: "speeltijden", widget: "string", required: false }
           - { label: "Contactpersoon", name: "contactpersoon", widget: "string", required: false }
-          - { label: "Telefoon", name: "telefoon", widget: "string", required: false }
           - { label: "E-mail", name: "email", widget: "string", required: false }
-          - { label: "KvK-nummer", name: "kvk", widget: "string", required: false }
-          - { label: "IBAN", name: "bank", widget: "string", required: false }
           - { label: "Kaart (insluitcode, optioneel)", name: "kaart", widget: "text", required: false }
