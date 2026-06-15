@@ -1,5 +1,5 @@
 ---
-title: "De Zilveren Kogels" in Ooij
+title: "De Zilveren Kogels in Ooij" 
 ---
 
 Welkom bij **jeu-de-boules-vereniging De Zilveren Kogels in Ooij**! Bij ons draait alles om
