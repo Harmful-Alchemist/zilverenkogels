@@ -1,8 +1,8 @@
 ---
-title: "De Zilveren Kogels"
+title: "De Zilveren Kogels" in Ooij
 ---
 
-Welkom bij **jeu-de-boules-vereniging De Zilveren Kogels**! Bij ons draait alles om
+Welkom bij **jeu-de-boules-vereniging De Zilveren Kogels in Ooij**! Bij ons draait alles om
 gezelligheid, beweging in de buitenlucht en natuurlijk een goede partij petanque.
 
 Of je nu een ervaren speler bent of nog nooit een boule hebt gegooid: iedereen is van
