@@ -2,7 +2,7 @@
   {{/* Hero */}}
   <section class="hero">
     {{ with resources.Get "images/hero.jpg" }}
-      {{ $h := .Fill "1600x720 smart" }}
+      {{ $h := (partial "oriented.html" .).Fill "1600x720 smart" }}
       <img class="hero-img" src="{{ $h.RelPermalink }}" alt="Leden van De Zilveren Kogels in actie op de baan" width="1600" height="720">
     {{ end }}
     <div class="hero-overlay">

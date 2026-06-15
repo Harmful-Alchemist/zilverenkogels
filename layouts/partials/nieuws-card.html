@@ -6,7 +6,7 @@
     <a class="nieuws-thumb" href="{{ .RelPermalink }}">
       {{ $res := $.Resources.Get $img }}
       {{ if $res }}
-        {{ $t := $res.Fill "600x360 smart" }}
+        {{ $t := (partial "oriented.html" $res).Fill "600x360 smart" }}
         <img src="{{ $t.RelPermalink }}" alt="{{ .Title }}" loading="lazy" width="600" height="360">
       {{ else }}
         <img src="{{ $img | relURL }}" alt="{{ .Title }}" loading="lazy">

@@ -6,7 +6,7 @@
     {{ with .Params.image }}
       {{ $res := $.Resources.Get . }}
       {{ if $res }}
-        {{ $t := $res.Fill "1200x675 smart" }}
+        {{ $t := (partial "oriented.html" $res).Fill "1200x675 smart" }}
         <img class="single-foto" src="{{ $t.RelPermalink }}" alt="{{ $.Title }}" width="1200" height="675">
       {{ else }}
         <img class="single-foto" src="{{ . | relURL }}" alt="{{ $.Title }}">

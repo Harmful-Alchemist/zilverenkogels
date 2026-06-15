@@ -74,7 +74,45 @@ collections:
         field: { label: "Afbeelding", name: "afbeelding", widget: "image", choose_url: false }
       - { label: "Toelichting (optioneel)", name: "body", widget: "markdown", required: false }
 
-  # 4. Contactgegevens — één bestand (geen nieuwe items, alleen bewerken)
+  # 4. Vaste pagina's — de teksten op de site (geen nieuwe items, alleen bewerken)
+  - name: paginas
+    label: "Pagina's"
+    files:
+      - name: home
+        label: "Homepage (welkomsttekst)"
+        file: "content/_index.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Welkomsttekst", name: "body", widget: "markdown" }
+      - name: agenda_intro
+        label: "Agenda — introtekst"
+        file: "content/agenda/_index.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Tekst", name: "body", widget: "markdown" }
+      - name: nieuws_intro
+        label: "Nieuws — introtekst"
+        file: "content/nieuws/_index.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Tekst", name: "body", widget: "markdown" }
+      - name: fotos_intro
+        label: "Foto's — introtekst"
+        file: "content/fotos/_index.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Tekst", name: "body", widget: "markdown" }
+      - name: contact_tekst
+        label: "Contact — introtekst"
+        file: "content/contact.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          # Verborgen velden zodat de pagina-instellingen behouden blijven bij opslaan
+          - { label: "Type", name: "type", widget: "hidden", default: "contact" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "single" }
+          - { label: "Tekst", name: "body", widget: "markdown" }
+
+  # 5. Contactgegevens — één bestand (geen nieuwe items, alleen bewerken)
   - name: instellingen
     label: "Instellingen"
     files:

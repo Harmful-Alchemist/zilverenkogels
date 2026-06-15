@@ -1,0 +1,7 @@
+{{- /*
+  Geeft een afbeeldingsresource terug die rechtop staat volgens de EXIF-oriëntatie.
+  Lost het probleem op dat telefoonfoto's (oriëntatie 6/8 enz.) gekanteld tonen.
+  Aanroep: {{ $res := partial "oriented.html" $resource }} en daarna bijv. $res.Fill "...".
+  Voor afbeeldingen zonder rotatie is dit feitelijk een no-op.
+*/ -}}
+{{- return (.Filter images.AutoOrient) -}}

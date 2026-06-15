@@ -9,9 +9,10 @@
     {{ if $images }}
       <div class="foto-galerij" data-lightbox>
         {{ range $images }}
-          {{ $thumb := .Fill "500x500 smart" }}
-          {{ $full := . }}
-          {{ if gt .Width 1600 }}{{ $full = .Resize "1600x" }}{{ end }}
+          {{ $o := partial "oriented.html" . }}
+          {{ $thumb := $o.Fill "500x500 smart" }}
+          {{ $full := $o }}
+          {{ if gt $o.Width 1600 }}{{ $full = $o.Resize "1600x" }}{{ end }}
           <a class="foto" href="{{ $full.RelPermalink }}">
             <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" width="500" height="500">
           </a>
