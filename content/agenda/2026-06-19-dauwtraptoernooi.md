@@ -1,7 +1,7 @@
 ---
-title: Dauwtraptoernooi
+title: Dauwtrap-toernooi met luxe ontbijt
 date: 2026-06-19T09:30:00+02:00
-location: Banen de Zilveren Kogels Ooij
+location: Banen Zilveren Kogels Ooij
 ---
 
-Dauwtraptoernooi met luxe ontbijt
+Dauwtrap-toernooi met luxe ontbijt
