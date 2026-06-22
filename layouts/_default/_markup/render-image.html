@@ -23,6 +23,6 @@
   {{- if gt $o.Width 1600 }}{{ $big = $o.Resize "1600x" }}{{ end -}}
   {{- $full = $big.RelPermalink -}}
 {{- end -}}
-<a class="zoom" data-zoom data-zoom-group="content" href="{{ $full | safeURL }}" aria-label="Vergroot foto">
+<a class="zoom" data-zoom data-zoom-group="{{ .Page.RelPermalink }}" href="{{ $full | safeURL }}" aria-label="Vergroot foto">
 <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
 </a>
