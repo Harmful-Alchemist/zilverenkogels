@@ -148,8 +148,22 @@ section { margin-bottom: 1rem; }
 .single-meta { color: var(--kleur-grijs); }
 .single-foto { border-radius: var(--radius); margin: 1rem 0; }
 .prose p { margin: 0 0 1rem; }
-/* Foto's in de tekst van content-items: niet de hele kolom vullen, maar
-   gecentreerd en op een nette breedte, zodat de tekst leidend blijft. */
+/* Foto's in de tekst van content-items (overal: detailpagina én lijst-samenvatting):
+   gecentreerd en op één nette breedte, zodat de tekst leidend blijft en de grootte
+   overal gelijk is. Klikbaar voor de lichtbak (cursor-vergrootglas). */
+a.zoom {
+  display: block;
+  max-width: min(100%, 28rem);
+  margin: 1.5rem auto;
+  cursor: zoom-in;
+}
+a.zoom img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+/* Terugval voor eventuele niet-gewrapte afbeeldingen in tekst */
 .prose img {
   display: block;
   max-width: min(100%, 28rem);

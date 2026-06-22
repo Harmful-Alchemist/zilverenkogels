@@ -1,0 +1,28 @@
+{{- /*
+  Render-hook voor afbeeldingen in de tekst (Markdown ![..](..)).
+  Zorgt dat élke tekstfoto:
+   - overal dezelfde nette grootte krijgt (via class .zoom in de CSS),
+   - rechtop staat (EXIF) en verkleind wordt als hij een page-resource is,
+   - klikbaar is voor de lichtbak (data-zoom).
+*/ -}}
+{{- $u := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+{{- $res := "" -}}
+{{- if and (not (strings.HasPrefix $u "http")) (not (strings.HasPrefix $u "/")) -}}
+  {{- with .Page.Resources.GetMatch $u -}}{{ $res = . }}{{- end -}}
+{{- end -}}
+{{- $src := $u -}}
+{{- $full := $u -}}
+{{- with $res -}}
+  {{- $o := .Filter images.AutoOrient -}}
+  {{- $thumb := $o -}}
+  {{- if gt $o.Width 960 }}{{ $thumb = $o.Resize "960x" }}{{ end -}}
+  {{- $src = $thumb.RelPermalink -}}
+  {{- $big := $o -}}
+  {{- if gt $o.Width 1600 }}{{ $big = $o.Resize "1600x" }}{{ end -}}
+  {{- $full = $big.RelPermalink -}}
+{{- end -}}
+<a class="zoom" data-zoom data-zoom-group="content" href="{{ $full | safeURL }}" aria-label="Vergroot foto">
+<img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy"{{ with $title }} title="{{ . }}"{{ end }}>
+</a>

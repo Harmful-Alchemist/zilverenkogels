@@ -13,23 +13,11 @@
           {{ $thumb := $o.Fill "500x500 smart" }}
           {{ $full := $o }}
           {{ if gt $o.Width 1600 }}{{ $full = $o.Resize "1600x" }}{{ end }}
-          <a class="foto" href="{{ $full.RelPermalink }}">
+          <a class="foto" data-zoom data-zoom-group="album" href="{{ $full.RelPermalink }}">
             <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" width="500" height="500">
           </a>
         {{ end }}
       </div>
-
-      <div class="lightbox" id="lightbox" hidden>
-        <button class="lightbox-sluit" aria-label="Sluiten">&times;</button>
-        <button class="lightbox-vorige" aria-label="Vorige">&#8249;</button>
-        <img class="lightbox-img" src="" alt="">
-        <button class="lightbox-volgende" aria-label="Volgende">&#8250;</button>
-      </div>
-
-      {{ with resources.Get "js/lightbox.js" }}
-        {{ $js := . | minify | fingerprint }}
-        <script src="{{ $js.RelPermalink }}" defer></script>
-      {{ end }}
     {{ else }}
       <p class="leeg">Dit album bevat nog geen foto's.</p>
     {{ end }}
