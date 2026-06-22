@@ -14,6 +14,22 @@ locale: nl
 media_folder: "static/uploads"
 public_folder: "/uploads"
 
+# Foto's automatisch verkleinen + naar WebP omzetten in de browser, vóór ze
+# worden opgeslagen. Scheelt enorm in bestandsgrootte (telefoonfoto's van
+# meerdere MB worden een paar honderd KB) en houdt de repository klein.
+media_libraries:
+  default:
+    config:
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          # Maximale afmetingen; grotere foto's worden verkleind, kleinere blijven gelijk.
+          width: 1920
+          height: 1920
+        svg:
+          optimize: true
+
 # Bewust beperkt tot drie soorten inhoud + contactgegevens,
 # zodat de rest van de site niet per ongeluk gewijzigd kan worden.
 collections:

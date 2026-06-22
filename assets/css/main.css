@@ -148,7 +148,19 @@ section { margin-bottom: 1rem; }
 .single-meta { color: var(--kleur-grijs); }
 .single-foto { border-radius: var(--radius); margin: 1rem 0; }
 .prose p { margin: 0 0 1rem; }
-.prose img { border-radius: var(--radius); margin: 1rem 0; }
+/* Foto's in de tekst van content-items: niet de hele kolom vullen, maar
+   gecentreerd en op een nette breedte, zodat de tekst leidend blijft. */
+.prose img {
+  display: block;
+  max-width: min(100%, 28rem);
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: var(--radius);
+}
+/* Een onderschrift onder een foto (markdown: ![onderschrift](...)) */
+.prose figure { margin: 1.5rem 0; }
+.prose figure img { margin: 0 auto .4rem; }
+.prose figcaption { text-align: center; font-size: .9rem; color: var(--kleur-grijs); }
 .leeg { color: var(--kleur-grijs); font-style: italic; }
 details summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
 

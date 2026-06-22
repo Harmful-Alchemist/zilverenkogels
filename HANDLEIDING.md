@@ -91,6 +91,17 @@ Deze gegevens verschijnen op de contactpagina én onderaan elke pagina.
 
 ---
 
+## Foto groot of klein laten zien?
+
+Je bepaalt de grootte van een foto door **waar** je hem plaatst:
+
+- **Grote foto bovenaan een nieuwsbericht** → gebruik het veld **Foto** (bovenin het
+  bericht). Die wordt breed, als een banner.
+- **Kleinere foto tussen de tekst** → voeg de foto in via de **tekst-editor**. Die wordt
+  netjes gecentreerd en kleiner getoond, zodat de tekst leidend blijft.
+
+Je hoeft dus zelf niets te verkleinen — de website regelt de juiste grootte automatisch.
+
 ## 7. Goed om te weten
 
 - Na **Publiceren** duurt het **1 à 2 minuten** voordat de wijziging op de
