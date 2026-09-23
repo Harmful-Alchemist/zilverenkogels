@@ -5,7 +5,3 @@ location: Banen Zilveren Kogels Ooij
 ---
 
 Dauwtrap-toernooi met luxe ontbijt.
-
-![](/uploads/dauwtraptoernooi%20foto.JPG)
-
-![](/uploads/dauwtraptoernooi.JPG)

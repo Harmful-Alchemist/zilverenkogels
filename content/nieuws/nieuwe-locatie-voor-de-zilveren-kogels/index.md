@@ -1,6 +1,6 @@
 ---
 title: Nieuwe locatie voor de Zilveren Kogels
-date: 2028-12-05T00:00:00+01:00
+date: 2026-12-05T00:00:00+01:00
 image: ''
 ---
 

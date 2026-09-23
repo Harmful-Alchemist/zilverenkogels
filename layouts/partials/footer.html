@@ -15,6 +15,11 @@
       <h3>Speeltijden</h3>
       {{ with $c.speeltijden }}<p>{{ . | safeHTML }}</p>{{ end }}
     </div>
+    <div class="footer-col">
+      <h3>Informatie</h3>
+      <p><a href="{{ "/documenten/baanverhuur.pdf" | relURL }}">Baanverhuur (pdf)</a></p>
+      <p><a href="{{ "/documenten/lidmaatschap-en-contributie.pdf" | relURL }}">Lidmaatschap en contributie (pdf)</a></p>
+    </div>
   </div>
   <div class="container footer-bottom">
     <p>&copy; {{ now.Year }} {{ with $c.clubnaam }}{{ . }}{{ else }}De Zilveren Kogels{{ end }} · <a href="{{ "/contact" | relURL }}">Contact</a></p>
